@@ -17,6 +17,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "prepare": "pnpm run build",
+    "test:unit": "vitest --pool=threads",
     "typecheck": "tsc --noEmit"
   },
   "exports": {
@@ -39,6 +40,11 @@
       "types": "./dist/schemas/index.d.ts",
       "import": "./dist/schemas/index.mjs",
       "require": "./dist/schemas/index.cjs"
+    },
+    "./utils": {
+      "types": "./dist/utils/index.d.ts",
+      "import": "./dist/utils/index.mjs",
+      "require": "./dist/utils/index.cjs"
     }
   },
   "keywords": [
@@ -51,9 +57,13 @@
     "zod": "^4.0.16"
   },
   "devDependencies": {
+    "@types/node": "^20.19.19",
+    "@vitest/coverage-v8": "^3.2.4",
+    "happy-dom": "^19.0.2",
     "rimraf": "^6.0.1",
     "tsdown": "^0.15.6",
     "typescript": "^5.9.3",
+    "vitest": "^3.2.4",
     "zod": "^4.0.16"
   },
   "publishConfig": {

@@ -11,10 +11,6 @@
     "includes": [
       "**",
       "!**/pnpm-lock.yaml",
-      "!lib/db/migrations",
-      "!drizzle_public",
-      "!drizzle_tenant",
-      "!lib/editor/react-renderer.tsx",
       "!node_modules",
       "!.next",
       "!public",
