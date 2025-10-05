@@ -1,0 +1,19 @@
+{
+  "name": "pxlpacket-lib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "tsdown": "^0.15.6",
+    "typescript": "^5.9.3",
+    "zod": "^4.1.11"
+  }
+}
