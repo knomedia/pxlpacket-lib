@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "declaration": false,              // tsdown handles d.ts
+    "emitDeclarationOnly": false,
+    "isolatedDeclarations": true,      // fast d.ts generation path
+    "strict": true,
+    "skipLibCheck": false,
+    "noEmit": true,                    // tsdown emits; tsc only for typecheck
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"]
+}
