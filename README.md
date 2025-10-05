@@ -4,4 +4,5 @@
 
 ## Experimental
 
-This is all exerimential in it's current phase is going to change. Use at your own risk.
+This is all experimential. Will change lots for now. Use at your own risk.
+
