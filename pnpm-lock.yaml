@@ -7,11 +7,10 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
       '@biomejs/biome':
         specifier: 2.1.4
         version: 2.1.4
-    devDependencies:
       '@types/node':
         specifier: ^20.19.19
         version: 20.19.19
@@ -36,6 +35,10 @@ importers:
       zod:
         specifier: ^4.0.16
         version: 4.1.11
+    optionalDependencies:
+      '@rolldown/binding-darwin-arm64':
+        specifier: 1.0.0-beta.41
+        version: 1.0.0-beta.41
 
 packages:
 
