@@ -1,7 +1,6 @@
 import { defineConfig } from 'tsdown';
 
 export default defineConfig({
-  // Multiple entries become subpath exports (see package.json)
   entry: ['src/index.ts'],
   dts: false, // declarations emitted via tsc for stable paths
   format: ['esm', 'cjs'], // emit both
