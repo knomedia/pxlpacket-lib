@@ -15,3 +15,5 @@ export type PathResolver = {
   /** Resolve an HLS segment base path */
   resolveHLSSegment?(id: string): string;
 };
+
+export {};

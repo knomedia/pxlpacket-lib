@@ -5,10 +5,13 @@ export default defineConfig({
   entry: [
     'src/index.ts',
     'src/client/index.ts',
-    'src/server/index.ts',
     'src/schemas/index.ts',
+    'src/server/index.ts',
+    'src/server/default-path-resolver.ts',
+    'src/server/path-resolver.ts',
     'src/types/index.ts',
     'src/utils/index.ts',
+    'src/utils/payload.ts',
   ],
   dts: false, // declarations emitted via tsc for stable paths
   format: ['esm', 'cjs'], // emit both

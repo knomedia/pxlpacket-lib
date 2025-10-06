@@ -1,6 +1,6 @@
 {
   "name": "pxlpacket",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "repository": {
     "type": "git",
@@ -53,6 +53,12 @@
       "import": "./dist/server/default-path-resolver.js",
       "require": "./dist/server/default-path-resolver.cjs",
       "default": "./dist/server/default-path-resolver.js"
+    },
+    "./server/path-resolver": {
+      "types": "./dist/server/path-resolver.d.ts",
+      "import": "./dist/server/path-resolver.js",
+      "require": "./dist/server/path-resolver.cjs",
+      "default": "./dist/server/path-resolver.js"
     },
     "./schemas": {
       "types": "./dist/schemas/index.d.ts",
@@ -123,6 +129,12 @@
       "server/*": [
         "./dist/server/*.d.ts"
       ],
+      "server/default-path-resolver": [
+        "./dist/server/default-path-resolver.d.ts"
+      ],
+      "server/path-resolver": [
+        "./dist/server/path-resolver.d.ts"
+      ],
       "schemas": [
         "./dist/schemas/index.d.ts"
       ],
@@ -140,6 +152,9 @@
       ],
       "utils/*": [
         "./dist/utils/*.d.ts"
+      ],
+      "utils/payload": [
+        "./dist/utils/payload.d.ts"
       ],
       "package.json": [
         "./package.json"
