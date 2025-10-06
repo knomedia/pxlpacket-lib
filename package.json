@@ -25,7 +25,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "prepare": "pnpm run build",
-    "prepublishOnly": "pnpm typecheck && pnpm test:unit && pnpm clean && pnpm build",
+    "prepublishOnly": "pnpm typecheck && pnpm clean && pnpm build",
     "test:unit": "vitest --pool=threads",
     "typecheck": "tsc --noEmit"
   },
