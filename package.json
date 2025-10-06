@@ -1,6 +1,6 @@
 {
   "name": "pxlpacket",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "type": "module",
   "files": [

@@ -1,1 +1,1 @@
-export { verifyJobPayload } from './payload.js';
+export { verifyJobPayload } from './payload';

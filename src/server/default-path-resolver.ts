@@ -1,6 +1,6 @@
 import * as path from 'node:path';
-import type { Container } from '../types/index.js';
-import type { PathResolver } from './path-resolver.js';
+import type { Container } from '../types';
+import type { PathResolver } from './path-resolver';
 
 export class DefaultPathResolver implements PathResolver {
   constructor(public roots: PathResolver['roots']) {}

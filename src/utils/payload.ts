@@ -1,5 +1,5 @@
-import { TemplateBodyZ } from '../schemas/index.js';
-import type { PxlPacketPayload } from '../types/index.js';
+import { TemplateBodyZ } from '../schemas';
+import type { PxlPacketPayload } from '../types';
 
 type VerifyResult = {
   success: boolean;
