@@ -10,7 +10,7 @@ export default defineConfig({
     'src/types/index.ts',
     'src/utils/index.ts',
   ],
-  dts: { sourcemap: true }, // generate .d.ts (+ maps)
+  dts: false, // declarations emitted via tsc for stable paths
   format: ['esm', 'cjs'], // emit both
   target: 'es2022', // modern JS; safe for Next 14/15+
   platform: 'neutral', // library default; avoids bundling node/browser shims
