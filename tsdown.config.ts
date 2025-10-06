@@ -16,5 +16,7 @@ export default defineConfig({
   platform: 'neutral', // library default; avoids bundling node/browser shims
   clean: true, // wipe dist before build
   sourcemap: true,
+  hash: false, // keep output filenames stable
+  unbundle: true, // emit per-source modules (matches .d.ts layout)
   external: ['node:path', 'node:fs', 'node:url', 'node:os'], // don't bundle node built-ins add as needed
 });
