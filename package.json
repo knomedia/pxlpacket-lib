@@ -1,6 +1,6 @@
 {
-  "name": "pxlpacket-lib",
-  "version": "0.0.2",
+  "name": "pxlpacket",
+  "version": "0.0.3",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "type": "module",
   "files": [
@@ -40,6 +40,11 @@
       "types": "./dist/schemas/index.d.ts",
       "import": "./dist/schemas/index.mjs",
       "require": "./dist/schemas/index.cjs"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.mjs",
+      "require": "./dist/types/index.cjs"
     },
     "./utils": {
       "types": "./dist/utils/index.d.ts",

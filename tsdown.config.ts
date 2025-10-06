@@ -7,6 +7,7 @@ export default defineConfig({
     'src/client/index.ts',
     'src/server/index.ts',
     'src/schemas/index.ts',
+    'src/types/index.ts',
     'src/utils/index.ts',
   ],
   dts: { sourcemap: true }, // generate .d.ts (+ maps)
