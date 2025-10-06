@@ -1,10 +1,16 @@
-import { TemplateBodyZ } from '../schemas';
-import type { PxlPacketPayload } from '../types';
+import { TemplateBodyZ } from '../schemas/index.js';
+import type { PxlPacketPayload } from '../types/index.js';
 
 type VerifyResult = {
   success: boolean;
   errors?: string[];
 };
+
+/**
+ * take in a job payload and verify that all templates and data are valid
+ *
+ * returns { success: true } if valid, or { success: false, errors: [...] } if not
+ */
 export function verifyJobPayload(payload: PxlPacketPayload): VerifyResult {
   const errors: string[] = [];
   if (payload.video) {

@@ -1,4 +1,4 @@
-import type { Container } from '../types';
+import type { Container } from '../types/index.js';
 
 export type PathResolver = {
   // where files are rooted — callers point these at safe dirs

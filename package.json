@@ -1,6 +1,6 @@
 {
   "name": "pxlpacket",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "type": "module",
   "files": [
@@ -93,17 +93,32 @@
       "client": [
         "dist/client/index.d.ts"
       ],
+      "client/*": [
+        "dist/client/*.d.ts"
+      ],
       "server": [
         "dist/server/index.d.ts"
+      ],
+      "server/*": [
+        "dist/server/*.d.ts"
       ],
       "schemas": [
         "dist/schemas/index.d.ts"
       ],
+      "schemas/*": [
+        "dist/schemas/*.d.ts"
+      ],
       "types": [
         "dist/types/index.d.ts"
       ],
+      "types/*": [
+        "dist/types/*.d.ts"
+      ],
       "utils": [
         "dist/utils/index.d.ts"
+      ],
+      "utils/*": [
+        "dist/utils/*.d.ts"
       ],
       "package.json": [
         "package.json"

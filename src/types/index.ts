@@ -8,7 +8,7 @@ import type {
   VideoFourCCZ,
   FilterSpecZ,
   TemplateInputZ,
-} from '../schemas';
+} from '../schemas/index.js';
 
 /** ----------------------------------
  * From Compiler Zod schema

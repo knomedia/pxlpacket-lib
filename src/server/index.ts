@@ -1,2 +1,2 @@
-export * from './default-path-resolver';
-export * from './path-resolver';
+export { DefaultPathResolver } from './default-path-resolver.js';
+export type { PathResolver } from './path-resolver.js';
