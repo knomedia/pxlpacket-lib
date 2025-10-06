@@ -1,6 +1,6 @@
 {
   "name": "pxlpacket",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "type": "module",
   "files": [
@@ -39,6 +39,12 @@
       "require": "./dist/server/index.cjs",
       "default": "./dist/server/index.js"
     },
+    "./server/default-path-resolver": {
+      "types": "./dist/server/default-path-resolver.d.ts",
+      "import": "./dist/server/default-path-resolver.js",
+      "require": "./dist/server/default-path-resolver.cjs",
+      "default": "./dist/server/default-path-resolver.js"
+    },
     "./schemas": {
       "types": "./dist/schemas/index.d.ts",
       "import": "./dist/schemas/index.js",
@@ -56,6 +62,12 @@
       "import": "./dist/utils/index.js",
       "require": "./dist/utils/index.cjs",
       "default": "./dist/utils/index.js"
+    },
+    "./utils/payload": {
+      "types": "./dist/utils/payload.d.ts",
+      "import": "./dist/utils/payload.js",
+      "require": "./dist/utils/payload.cjs",
+      "default": "./dist/utils/payload.js"
     },
     "./package.json": "./package.json"
   },
@@ -88,40 +100,40 @@
   "typesVersions": {
     "*": {
       "*": [
-        "dist/index.d.ts"
+        "./dist/index.d.ts"
       ],
       "client": [
-        "dist/client/index.d.ts"
+        "./dist/client/index.d.ts"
       ],
       "client/*": [
-        "dist/client/*.d.ts"
+        "./dist/client/*.d.ts"
       ],
       "server": [
-        "dist/server/index.d.ts"
+        "./dist/server/index.d.ts"
       ],
       "server/*": [
-        "dist/server/*.d.ts"
+        "./dist/server/*.d.ts"
       ],
       "schemas": [
-        "dist/schemas/index.d.ts"
+        "./dist/schemas/index.d.ts"
       ],
       "schemas/*": [
-        "dist/schemas/*.d.ts"
+        "./dist/schemas/*.d.ts"
       ],
       "types": [
-        "dist/types/index.d.ts"
+        "./dist/types/index.d.ts"
       ],
       "types/*": [
-        "dist/types/*.d.ts"
+        "./dist/types/*.d.ts"
       ],
       "utils": [
-        "dist/utils/index.d.ts"
+        "./dist/utils/index.d.ts"
       ],
       "utils/*": [
-        "dist/utils/*.d.ts"
+        "./dist/utils/*.d.ts"
       ],
       "package.json": [
-        "package.json"
+        "./package.json"
       ]
     }
   },
