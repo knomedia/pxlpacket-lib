@@ -2,17 +2,7 @@ import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   // Multiple entries become subpath exports (see package.json)
-  entry: [
-    'src/index.ts',
-    'src/client/index.ts',
-    'src/schemas/index.ts',
-    'src/server/index.ts',
-    'src/server/default-path-resolver.ts',
-    'src/server/path-resolver.ts',
-    'src/types/index.ts',
-    'src/utils/index.ts',
-    'src/utils/payload.ts',
-  ],
+  entry: ['src/index.ts'],
   dts: false, // declarations emitted via tsc for stable paths
   format: ['esm', 'cjs'], // emit both
   target: 'es2022', // modern JS; safe for Next 14/15+

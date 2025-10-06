@@ -1,6 +1,6 @@
 {
   "name": "pxlpacket",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "repository": {
     "type": "git",
@@ -36,54 +36,6 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
-    "./client": {
-      "types": "./dist/client/index.d.ts",
-      "import": "./dist/client/index.js",
-      "require": "./dist/client/index.cjs",
-      "default": "./dist/client/index.js"
-    },
-    "./server": {
-      "types": "./dist/server/index.d.ts",
-      "import": "./dist/server/index.js",
-      "require": "./dist/server/index.cjs",
-      "default": "./dist/server/index.js"
-    },
-    "./server/default-path-resolver": {
-      "types": "./dist/server/default-path-resolver.d.ts",
-      "import": "./dist/server/default-path-resolver.js",
-      "require": "./dist/server/default-path-resolver.cjs",
-      "default": "./dist/server/default-path-resolver.js"
-    },
-    "./server/path-resolver": {
-      "types": "./dist/server/path-resolver.d.ts",
-      "import": "./dist/server/path-resolver.js",
-      "require": "./dist/server/path-resolver.cjs",
-      "default": "./dist/server/path-resolver.js"
-    },
-    "./schemas": {
-      "types": "./dist/schemas/index.d.ts",
-      "import": "./dist/schemas/index.js",
-      "require": "./dist/schemas/index.cjs",
-      "default": "./dist/schemas/index.js"
-    },
-    "./types": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/types/index.js",
-      "require": "./dist/types/index.cjs",
-      "default": "./dist/types/index.js"
-    },
-    "./utils": {
-      "types": "./dist/utils/index.d.ts",
-      "import": "./dist/utils/index.js",
-      "require": "./dist/utils/index.cjs",
-      "default": "./dist/utils/index.js"
-    },
-    "./utils/payload": {
-      "types": "./dist/utils/payload.d.ts",
-      "import": "./dist/utils/payload.js",
-      "require": "./dist/utils/payload.cjs",
-      "default": "./dist/utils/payload.js"
-    },
     "./package.json": "./package.json"
   },
   "keywords": [
@@ -114,51 +66,8 @@
   },
   "typesVersions": {
     "*": {
-      "*": [
-        "./dist/index.d.ts"
-      ],
-      "client": [
-        "./dist/client/index.d.ts"
-      ],
-      "client/*": [
-        "./dist/client/*.d.ts"
-      ],
-      "server": [
-        "./dist/server/index.d.ts"
-      ],
-      "server/*": [
-        "./dist/server/*.d.ts"
-      ],
-      "server/default-path-resolver": [
-        "./dist/server/default-path-resolver.d.ts"
-      ],
-      "server/path-resolver": [
-        "./dist/server/path-resolver.d.ts"
-      ],
-      "schemas": [
-        "./dist/schemas/index.d.ts"
-      ],
-      "schemas/*": [
-        "./dist/schemas/*.d.ts"
-      ],
-      "types": [
-        "./dist/types/index.d.ts"
-      ],
-      "types/*": [
-        "./dist/types/*.d.ts"
-      ],
-      "utils": [
-        "./dist/utils/index.d.ts"
-      ],
-      "utils/*": [
-        "./dist/utils/*.d.ts"
-      ],
-      "utils/payload": [
-        "./dist/utils/payload.d.ts"
-      ],
-      "package.json": [
-        "./package.json"
-      ]
+      "*": ["./dist/index.d.ts"],
+      "package.json": ["./package.json"]
     }
   },
   "engines": {
