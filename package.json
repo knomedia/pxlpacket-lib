@@ -2,6 +2,14 @@
   "name": "pxlpacket",
   "version": "0.0.9",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knomedia/pxlpacket-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/knomedia/pxlpacket-lib/issues"
+  },
+  "homepage": "https://github.com/knomedia/pxlpacket-lib#readme",
   "type": "module",
   "files": [
     "dist"
@@ -17,6 +25,7 @@
     "lint": "biome check",
     "lint:fix": "biome check --write",
     "prepare": "pnpm run build",
+    "prepublishOnly": "pnpm typecheck && pnpm test:unit && pnpm clean && pnpm build",
     "test:unit": "vitest --pool=threads",
     "typecheck": "tsc --noEmit"
   },
