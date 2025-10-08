@@ -1,10 +1,12 @@
 import { z } from 'zod';
 
+/** ----------------------------------
+ * FFMPEG Template / compiler schema
+ * ----------------------------------- */
 export const ContainersZ = z.enum(['mp4', 'mkv', 'webm', 'hls', 'image2']);
-
 export const HardwareZ = z.enum(['cpu', 'nvidia', 'intel', 'amd']);
 
-/** Video codecs per hardware target (whitelisted) */
+/** Video codecs per hardware target */
 export const VideoCodecCPUZ = z.enum([
   'libx264',
   'libx265',
@@ -21,7 +23,6 @@ export const VideoCodecINTELZ = z.enum([
   'hevc_vaapi',
 ]);
 export const VideoCodecAMDZ = z.enum(['h264_amf', 'hevc_amf']);
-
 export const AudioCodecZ = z.enum(['aac', 'libopus', 'libmp3lame', 'copy']);
 
 /** Presets (subset + normalized) */
@@ -36,17 +37,13 @@ export const PresetH264Z = z.enum([
   'slower',
   'veryslow',
 ]);
-export const PresetNVENCZ = z.enum(['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7']); // nvenc perf levels
-
-/** Pixel formats users can set directly on the encoder */
+export const PresetNVENCZ = z.enum(['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7']);
 export const PixelFormatZ = z.enum([
   'yuv420p',
   'yuv420p10le',
   'yuv422p10le',
   'yuv444p',
 ]);
-
-/** Color metadata flags (annotate stream; do not transform pixels) */
 export const ColorSpaceFlagZ = z.enum([
   'bt709',
   'bt470bg',
@@ -85,11 +82,7 @@ export const ColorTrcFlagZ = z.enum([
   'smpte2084',
   'arib-std-b67', // HLG
 ]);
-
-/** MP4/H.264/H.265 FourCC video tags */
 export const VideoFourCCZ = z.enum(['hvc1', 'hev1', 'avc1', 'avc3']);
-
-/** Filters */
 export const FilterSpecZ = z.union([
   z.object({
     kind: z.literal('format'),
@@ -171,11 +164,8 @@ export const FilterSpecZ = z.union([
     luma_amount: z.number().min(-2).max(2).optional(),
   }),
 ]);
-
-/** Video rate control (software encoders etc.) */
 export const VideoRateControlZ = z
   .object({
-    // Constant quality for hardware encoders (e.g., NVENC)
     cq: z.number().int().min(0).max(51).optional(),
     crf: z.number().int().min(0).max(51).optional(),
     vbitrate: z
@@ -195,8 +185,6 @@ export const VideoRateControlZ = z
     message: 'Choose either cq or vbitrate, not both',
     path: ['cq'],
   });
-
-/** x265 allow-listed params */
 export const X265ParamsZ = z.object({
   keyint: z.number().int().min(1).max(1000).optional(),
   minKeyint: z.number().int().min(1).max(1000).optional(),
@@ -215,8 +203,6 @@ export const X265ParamsZ = z.object({
   psyRd: z.number().min(0).max(3).optional(),
   psyRdoq: z.number().min(0).max(3).optional(),
 });
-
-/** Audio settings */
 export const AudioSettingsZ = z.object({
   acodec: AudioCodecZ.default('aac'),
   abitrate: z
@@ -243,25 +229,16 @@ export const HLSOptionsZ = z.object({
     .default(['independent_segments']),
   segmentFileId: z.string().optional(),
 });
-
-/** Image sequence options (image2 muxer) */
 export const ImageOptionsZ = z.object({
   pattern: z.string().default('%04d.jpg'),
   vframes: z.number().int().min(1).max(100000).optional(),
 });
-
-/** Main TemplateInput schema */
 export const TemplateInputZ = z.object({
   inputId: z.string().min(1),
   outputId: z.string().min(1),
   container: ContainersZ.default('mp4'),
-
   hardware: HardwareZ.default('cpu'),
-
-  /** Codec name (allowed lists depend on hardware/container) */
   vcodec: z.string(),
-
-  // Optional encoder knobs
   preset: z.string().optional(),
   profile: z
     .enum(['baseline', 'main', 'high', 'high10', 'main422-10'])
@@ -271,8 +248,6 @@ export const TemplateInputZ = z.object({
     .regex(/^\d(\.[0-9])?$/)
     .optional(), // e.g., 5.2
   pix_fmt: PixelFormatZ.optional(),
-
-  // Stream/container color metadata (flags)
   colorTags: z
     .object({
       colorspace: ColorSpaceFlagZ.optional(),
@@ -280,61 +255,68 @@ export const TemplateInputZ = z.object({
       colorTrc: ColorTrcFlagZ.optional(),
     })
     .optional(),
-
-  // MP4 FourCC video tag
   videoTag: VideoFourCCZ.optional(),
-
-  // Convenience dimensions/fps (compiled into filters)
   width: z.number().int().min(16).max(7680).optional(),
   height: z.number().int().min(16).max(4320).optional(),
   fps: z.number().min(1).max(1000).optional(),
   fpsr: z
     .tuple([z.number().min(1).max(100000), z.number().min(1).max(100000)])
     .optional(),
-
-  // Timing (input-side)
   ss: z.number().min(0).optional(),
   t: z.number().min(0).optional(),
-
-  // Filters
   filters: z.array(FilterSpecZ).default([]),
-
-  // Rate control
   rc: VideoRateControlZ.default({}),
-
-  // GOP controls
   gop: z.number().int().min(0).max(300).optional(),
   keyintMin: z.number().int().min(0).max(300).optional(),
   scThreshold: z.number().int().min(-1).max(100).optional(),
-
-  // x265 params
   x265: X265ParamsZ.optional(),
-
-  // Frames (for images or limited outputs)
   vframes: z.number().int().min(1).max(100000).optional(),
-
-  // Mute
   mute: z.boolean().default(false),
-
-  // Audio
   audio: AudioSettingsZ.default({
     acodec: 'aac',
     abitrate: '128k',
     channels: 2,
   }),
-
-  // HLS
   hls: HLSOptionsZ.optional(),
-
-  // Images
   image: ImageOptionsZ.optional(),
-
-  // Safety toggles
   restrictProtocols: z.boolean().default(true),
   movflagsFaststart: z.boolean().default(true),
 });
-
 export const TemplateBodyZ = TemplateInputZ.omit({
   inputId: true,
   outputId: true,
+});
+
+/** ----------------------------------
+ * Job Payload schema
+ * ----------------------------------- */
+export const PxlPacketFilesZ = z.record(z.string().min(1), z.url());
+export const NamedEncodingsZ = z.record(z.string().min(1), TemplateBodyZ);
+export const PxlPacketVideosConfigZ = z.object({
+  mezzanine: TemplateBodyZ.optional(),
+  mp4: NamedEncodingsZ.optional(),
+  hls: NamedEncodingsZ.optional(),
+  thumbnail: NamedEncodingsZ.optional(),
+  poster: NamedEncodingsZ.optional(),
+  hover: NamedEncodingsZ.optional(),
+});
+export const PxlPacketEventsZ = z.object({
+  jobStartedUrl: z.url().optional(),
+  jobCompletedUrl: z.url().optional(),
+  jobErroredUrl: z.url().optional(),
+  taskStartedUrl: z.url().optional(),
+  taskCompletedUrl: z.url().optional(),
+  taskErroredUrl: z.url().optional(),
+});
+export const PxlPacketPassbackDataZ = z.record(
+  z.string().min(1),
+  z.union([z.string(), z.number(), z.boolean()]),
+);
+export const PxlPacketPayloadZ = z.object({
+  version: z.string().min(1),
+  files: PxlPacketFilesZ,
+  calcAudioHeadroom: z.boolean().default(false),
+  video: PxlPacketVideosConfigZ.optional(),
+  events: PxlPacketEventsZ.optional(),
+  passbackData: PxlPacketPassbackDataZ.optional(),
 });
