@@ -38,4 +38,10 @@ export {
   ImageOptionsZ,
   TemplateInputZ,
   TemplateBodyZ,
+  PxlPacketFilesZ,
+  NamedEncodingsZ,
+  PxlPacketVideosConfigZ,
+  PxlPacketEventsZ,
+  PxlPacketPassbackDataZ,
+  PxlPacketPayloadZ,
 } from './schemas';
