@@ -297,6 +297,7 @@ export const PxlPacketVideosConfigZ = z.object({
   mp4: NamedEncodingsZ.optional(),
   hls: NamedEncodingsZ.optional(),
   thumbnail: NamedEncodingsZ.optional(),
+  thumbnailSprite: NamedEncodingsZ.optional(),
   poster: NamedEncodingsZ.optional(),
   hover: NamedEncodingsZ.optional(),
 });
@@ -315,6 +316,7 @@ export const PxlPacketPassbackDataZ = z.record(
 export const PxlPacketPayloadZ = z.object({
   version: z.string().min(1),
   files: PxlPacketFilesZ,
+  originalId: z.string().min(1),
   calcAudioHeadroom: z.boolean().default(false),
   video: PxlPacketVideosConfigZ.optional(),
   events: PxlPacketEventsZ.optional(),
