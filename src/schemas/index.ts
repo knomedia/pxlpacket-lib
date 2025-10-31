@@ -303,11 +303,8 @@ export const PxlPacketVideosConfigZ = z.object({
 });
 export const PxlPacketEventsZ = z.object({
   jobStartedUrl: z.url().optional(),
+  jobUpdatedUrl: z.url().optional(),
   jobCompletedUrl: z.url().optional(),
-  jobErroredUrl: z.url().optional(),
-  taskStartedUrl: z.url().optional(),
-  taskCompletedUrl: z.url().optional(),
-  taskErroredUrl: z.url().optional(),
 });
 export const PxlPacketPassbackDataZ = z.record(
   z.string().min(1),
