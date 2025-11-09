@@ -14,6 +14,8 @@ import type {
   PxlPacketEventsZ,
   PxlPacketPassbackDataZ,
   PxlPacketPayloadZ,
+  FfprobeInspectZ,
+  PxlPacketWebhookPayloadZ,
 } from '../schemas';
 
 /** ----------------------------------
@@ -38,3 +40,10 @@ export type PxlPacketVideosConfig = z.infer<typeof PxlPacketVideosConfigZ>;
 export type PxlPacketEvents = z.infer<typeof PxlPacketEventsZ>;
 export type PxlPacketPassbackData = z.infer<typeof PxlPacketPassbackDataZ>;
 export type PxlPacketPayload = z.infer<typeof PxlPacketPayloadZ>;
+
+/** ----------------------------------
+ * Webhook Event Types
+ * ----------------------------------- */
+
+export type FfprobeInspect = z.infer<typeof FfprobeInspectZ>;
+export type PxlPacketWebhookPayload = z.infer<typeof PxlPacketWebhookPayloadZ>;

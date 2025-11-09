@@ -13,6 +13,8 @@ export type {
   PxlPacketEvents,
   PxlPacketPassbackData,
   PxlPacketPayload,
+  FfprobeInspect,
+  PxlPacketWebhookPayload,
 } from './types';
 
 export {
@@ -44,4 +46,7 @@ export {
   PxlPacketEventsZ,
   PxlPacketPassbackDataZ,
   PxlPacketPayloadZ,
+  FfprobeInspectZ,
+  JsonValueZ,
+  PxlPacketWebhookPayloadZ,
 } from './schemas';

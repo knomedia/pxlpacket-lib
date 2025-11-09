@@ -331,6 +331,7 @@ export type JsonValue =
   | JsonPrimitive
   | { [k: string]: JsonValue }
   | JsonValue[];
+
 export const JsonValueZ: z.ZodType<JsonValue> = z.lazy(() =>
   z.union([
     JsonPrimitiveZ,
@@ -351,8 +352,6 @@ export const FfprobeInspectZ = z.object({
   bytes: z.number().int().nonnegative().optional(),
   raw: JsonValueZ.optional(),
 });
-
-export type FfprobeInspect = z.infer<typeof FfprobeInspectZ>;
 
 export const PxlPacketWebhookPayloadZ = z.object({
   event: z.enum(['job.start', 'job.update', 'job.complete']),
@@ -424,5 +423,3 @@ export const PxlPacketWebhookPayloadZ = z.object({
   ),
   passbackData: z.record(z.string(), z.any()).optional(),
 });
-
-export type PxlPacketWebhookPayload = z.infer<typeof PxlPacketWebhookPayloadZ>;
