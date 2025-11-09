@@ -1,6 +1,6 @@
 {
   "name": "pxlpacket",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Shared types, zod schemas, and utilities for pxl-packet apps",
   "repository": {
     "type": "git",
