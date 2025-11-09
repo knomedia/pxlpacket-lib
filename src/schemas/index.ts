@@ -319,3 +319,110 @@ export const PxlPacketPayloadZ = z.object({
   events: PxlPacketEventsZ.optional(),
   passbackData: PxlPacketPassbackDataZ.optional(),
 });
+
+/** ----------------------------------
+ * Webhook Payload schema
+ * ----------------------------------- */
+
+const JsonPrimitiveZ = z.union([z.string(), z.number(), z.boolean(), z.null()]);
+export type JsonPrimitive = z.infer<typeof JsonPrimitiveZ>;
+
+export type JsonValue =
+  | JsonPrimitive
+  | { [k: string]: JsonValue }
+  | JsonValue[];
+export const JsonValueZ: z.ZodType<JsonValue> = z.lazy(() =>
+  z.union([
+    JsonPrimitiveZ,
+    z.array(JsonValueZ),
+    z.record(z.string(), JsonValueZ),
+  ]),
+);
+
+export const FfprobeInspectZ = z.object({
+  durationSeconds: z.number().nonnegative().optional(),
+  width: z.number().int().nonnegative().optional(),
+  height: z.number().int().nonnegative().optional(),
+  bitrateKbps: z.number().nonnegative().optional(),
+  framerate: z.number().nonnegative().optional(),
+  videoStreamCount: z.number().int().nonnegative().optional(),
+  codec: z.string().min(1).optional(),
+  audioChannels: z.number().int().nonnegative().optional(),
+  bytes: z.number().int().nonnegative().optional(),
+  raw: JsonValueZ.optional(),
+});
+
+export type FfprobeInspect = z.infer<typeof FfprobeInspectZ>;
+
+export const PxlPacketWebhookPayloadZ = z.object({
+  event: z.enum(['job.start', 'job.update', 'job.complete']),
+  eventType: z.enum(['start', 'update', 'complete']),
+  emittedAt: z.string().refine((date) => !Number.isNaN(Date.parse(date)), {
+    message: 'Invalid date format',
+  }),
+  job: z.object({
+    id: z.string().min(1),
+    serviceAccountId: z.string().min(1),
+    status: z.enum([
+      'waiting',
+      'pending',
+      'in_progress',
+      'completed',
+      'error',
+      'failed',
+    ]),
+    lastErrorMessage: z.string().min(1).nullable().optional(),
+    startedAt: z
+      .string()
+      .refine((date) => !Number.isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+      })
+      .nullable()
+      .optional(),
+    completedAt: z
+      .string()
+      .refine((date) => !Number.isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+      })
+      .nullable()
+      .optional(),
+    createdAt: z
+      .string()
+      .refine((date) => !Number.isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+      })
+      .nullable()
+      .optional(),
+    updatedAt: z
+      .string()
+      .refine((date) => !Number.isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+      })
+      .nullable()
+      .optional(),
+  }),
+  files: z.array(
+    z.object({
+      id: z.uuid(),
+      taskId: z.uuid().nullable().optional(),
+      jobId: z.uuid(),
+      s3key: z.string().min(1),
+      fingerprint: z.string().min(1).nullable().optional(),
+      filename: z.string().min(1),
+      inspect: FfprobeInspectZ.optional(),
+      primaryOutput: z.boolean().optional().default(false),
+      key: z.string().min(1),
+      quality: z.string().min(1),
+      createdAt: z.string().refine((date) => !Number.isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+      }),
+      updatedAt: z.string().refine((date) => !Number.isNaN(Date.parse(date)), {
+        message: 'Invalid date format',
+      }),
+      presignedGet: z.url(),
+    }),
+  ),
+  passbackData: z.record(z.string(), z.any()).optional(),
+});
+
+export type PxlPacketWebhookPayload = z.infer<typeof PxlPacketWebhookPayloadZ>;
